@@ -1,0 +1,11 @@
+Index page for my bands
+
+<p>Current Bands</p>
+<% @bands.each do |band| %>
+    <li><a href="<%=band_url(band) %>"><%= band.name %></a> </li>
+    
+<% end %>
+<ul></ul>
+
+
+<p><a href="<%= new_band_url%>">Create D12</a></p>

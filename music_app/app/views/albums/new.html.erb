@@ -1,0 +1,39 @@
+<h1>New album creation</h1>
+
+<ul>
+<% if flash[:errors] 
+     flash[:errors].each do |error|%>
+        <li> <%= error %> </li>
+     <% end %>
+<% end %>
+     
+</ul>
+
+
+<form action="<%=albums_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label for="bandName">Band</label>
+    <select name="album[band_id]" id="bandName">
+        <% Band.all.each do |band| %>
+            <% selected = @album.band_id == band.id  %>
+            <option <%=selected ? "selected" : "" %> value="<%=band.id %>">
+                <%= band.name %> 
+            </option>
+        <% end %>
+    </select>
+    <br>
+    
+    <label >Recorded</label>
+    <input type="radio" name="album[live]"  value ="true" checked >Live
+    <input type="radio" name="album[live]"  value ="false"> Studio
+
+    <br>
+    <label for="year">Title </label>
+    <input type="text" name="album[title]" id="year">
+    <br>
+    <label for="year">Year created</label>
+    <input type="text" name="album[year]" id="year">
+
+    <input type="submit" value="Create!">
+</form>

@@ -1,0 +1,27 @@
+<h2>track info for <%= @track.title %>
+</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Album</th>
+        <th>Track number</th>
+        <th>Regular</th>
+    </tr>
+    <tr>
+        <%recorded = @track.regular ? "regular" : "bonus" %>
+         <td> <%= @track.title %> </td>
+         <td> <a href="<%= album_url(@track.album)%>"><%= @track.album.title %> </a> </td>
+         <td> <%= @track.ord %> </td>
+         <td> <%= recorded %> </td>
+    </tr>
+
+</table>
+
+<a href="<%= edit_track_url%>">Edit this track</a>
+
+<form action="<%= track_url%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="destroy track">
+</form>

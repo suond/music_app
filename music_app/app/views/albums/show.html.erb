@@ -1,0 +1,27 @@
+<h2>Album info for <%= @album.title %>
+</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Band</th>
+        <th>Year</th>
+        <th>Recorded</th>
+    </tr>
+    <tr>
+        <%recorded = @album.live ? "live" : "studio" %>
+         <td> <%= @album.title %> </td>
+         <td> <a href="<%= band_url(@album.band)%>"><%= @album.band.name %> </a> </td>
+         <td> <%= @album.year %> </td>
+         <td> <%= recorded %> </td>
+    </tr>
+
+</table>
+
+<a href="<%= edit_album_url%>">Edit this album</a>
+
+<form action="<%= album_url%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="destroy album">
+</form>

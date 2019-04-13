@@ -1,0 +1,19 @@
+welcome to <strong><%= @band.name %>'s </strong> page
+
+<h2>ALBUMS</h2>
+<ul>
+<% @albums.each do |album| %>
+    <a href="<%= album_url(album)%>"> <li><%= album.title %> </li> </a> 
+    
+<% end %>
+</ul>
+
+<p> <a href="<%=new_band_album_url(@band)%>">Click Here</a> to create an album</p>
+
+<a href="<%=edit_band_url%>">Edit this band</a>
+
+<form action="<%= band_url%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Remove...">
+</form>
